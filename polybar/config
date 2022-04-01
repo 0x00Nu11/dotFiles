@@ -1,0 +1,275 @@
+#############################################################################
+
+### colors ###
+[colors]
+background = #000000
+background-alt = #ff4444
+foreground = #dfdfdf
+foreground-alt = #ff4444
+primary = #ffffff
+secondary = #ff4444
+alert = #ff4444
+
+#############################################################################
+
+### bars ###
+## top bar ##
+[bar/top]
+width = 100%
+height = 18
+offset-x = 0
+offset-y = 0
+radius = 5
+fixed-center = true
+background = ${colors.background}
+foreground = ${colors.foreground}
+line-size = 2
+line-color = #ffffff
+border-size = 2
+border-color = #00000000
+padding-left = 5px
+padding-right = 5px
+module-margin-left = 1
+module-margin-right = 1
+font-0 = Fira Code Nerd Font:size=10;1
+font-1 = NotoColorEmoji:size=10;1
+modules-left = powerMenu battery wlan eth pulseaudio KDEConnect
+modules-center = temperature cpu memory fan
+modules-right = xwindow i3 date dunst
+wm-restack = i3
+override-redirect = true
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+cursor-click = pointer
+cursor-scroll = ns-resize4;10u4;10u
+
+#############################################################################
+
+### modules ###
+[module/xwindow]
+type = internal/xwindow
+label = %{F#ff4444}=- ﮊ%{F-} %title:0:20:...% %{F#ff4444} -=%{F-}
+label-empty = %{F#ff4444}=- ﮊ%{F-} nu11@pudding %{F#ff4444} -=%{F-}
+
+[module/i3]
+type = internal/i3
+format = | <label-state> <label-mode> |
+index-sort = true
+wrapping-scroll = true
+;pin-workspaces = true
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+label-focused = %index%
+label-focused-background = ${colors.background-alt}
+label-focused-padding = 2
+label-unfocused = %index%
+label-unfocused-padding = 2
+label-visible = %index%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+label-urgent = %index%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+label-separator =
+
+[module/wlan]
+type = internal/network
+interface = wlan0
+interval = 1.0
+format-connected = <label-connected>
+label-connected = %{A1:kitty -e nmtui:}| 直 %{F#ff4444}%essid%%{F-}%{A1}
+format-disconnected = <label-disconnected>
+label-disconnected = %{A1:kitty -e nmtui:}| %{F#ff4444}睊%{F-}%{A}
+label-disconnected-foreground = ${colors.foreground}
+
+[module/eth]
+type = internal/network
+interface = eno1
+interval = 1.0
+format-connected = <label-connected>
+label-connected = %{A1:kitty -e nmtui:}|  %{F#ff4444}%ifname%%{F-}%{A}
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = disc
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/date]
+type = internal/date
+interval = 1
+date = %A%{F#ff4444},%{F-} %B %{F#ff4444}-%{F-}
+date-alt = %d%{F#ff4444}/%{F-}%m%{F#ff4444}/%{F-}%Y %{F#ff4444}-%{F-}
+time = %H%{F#ff4444}:%{F-}%M%{F#ff4444}:%{F-}%S
+time-alt = %I%{F#ff4444}:%{F-}%M%{F#ff4444}:%{F-}%S %{F#ff4444}%p%{F-}
+;format-prefix =
+;format-prefix-foreground = ${colors.foreground-alt}
+label = %date% %time%
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 98
+format-charging = <animation-charging> <label-charging>
+label-charging = %{A1:notify-send -u critical "$(upower -i /org/freedesktop/UPower/devices/battery_BAT0)":}%percentage%%%{A1}
+format-discharging = <label-discharging>
+label-discharging = %{A1:notify-send -u critical "$(upower -i /org/freedesktop/UPower/devices/battery_BAT0)":}| %{F#ff4444}%{F-} %percentage%%%{A1}
+format-discharging-underline = ${self.format-charging-underline}
+label-full = %{A1:notify-send -u critical "$(upower -i /org/freedesktop/UPower/devices/battery_BAT0)":}| %{F#ff4444}%{F-} %percentage%%%{A1}
+format-full-prefix-foreground = ${colors.foreground}
+format-full-underline = ${self.format-charging-underline}
+animation-charging-0 = | %{F#ff4444}%{F-}
+animation-charging-1 = | %{F#ff4444}%{F-}
+animation-charging-2 = | %{F#ff4444}%{F-}
+animation-charging-3 = | %{F#ff4444}%{F-}
+animation-charging-4 = | %{F#ff4444}%{F-}
+animation-charging-framerate = 750
+
+[module/pulseaudio]
+type = internal/pulseaudio
+format-volume = <label-volume> <bar-volume> <ramp-volume>
+label-volume = %{A1:kitty -e ncpamixer:}| %percentage%%%{A1}
+label-volume-foreground = ${root.foreground}
+format-muted = | %{F#ff4444}muted%{F-} <bar-volume> <label-muted>
+label-muted = ﱝ
+label-muted-foreground = ${colors.foreground-alt}
+bar-volume-width = 10
+bar-volume-foreground = #ff4444
+bar-volume-gradient = true
+bar-volume-indicator = %{F#ff4444}-C%{F-}
+bar-volume-indicator-font = 2
+bar-volume-fill = %{F#ff4444}~%{F-}
+bar-volume-fill-font = 2
+bar-volume-empty = o
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground}
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-3 = 
+ramp-volume-4 = 
+ramp-volume-5 = 
+ramp-volume-6 = 
+ramp-volume-7 = 
+ramp-volume-8 = 
+ramp-volume-9 = 
+ramp-volume-10 = 
+ramp-volume-11 = 
+ramp-volume-12 = 
+ramp-volume-13 = 
+ramp-volume-14 = 
+ramp-volume-15 = 
+ramp-volume-16 = 
+ramp-volume-17 = 
+ramp-volume-18 = 
+ramp-volume-19 = 
+
+[module/dunst]
+type = custom/script
+exec = /$HOME/.config/polybar/modules/dunst/snooze.sh
+interval = 1
+format-foreground = ${colors.foreground-alt}
+click-left = /$HOME/.config/polybar/modules/dunst/dunstHistory.sh
+click-right = /$HOME/.config/polybar/modules/dunst/snooze.sh --toggle &
+
+[module/powerMenu]
+type = custom/menu
+expand-right = true
+format-spacing = 1
+label-open = 
+label-open-foreground = ${colors.foreground}
+label-close = 
+label-close-foreground = ${colors.background-alt}
+label-separator = -
+label-separator-foreground = ${colors.foreground-alt}
+menu-0-0 = 
+menu-0-0-exec = menu-open-1
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = power off
+menu-1-1-exec = shutdown now
+menu-0-1 = 
+menu-0-1-exec = menu-open-2
+menu-2-0 = cancel
+menu-2-0-exec = menu-open-0
+menu-2-1 = restart
+menu-2-1-exec = reboot
+menu-0-2 = 
+menu-0-2-exec = menu-open-3
+menu-3-0 = cancel
+menu-3-0-exec = menu-open-0
+menu-3-1 = suspend
+menu-3-1-exec = $HOME/.config/i3/exec/lockScreen.sh && systemctl suspend
+menu-0-3 = 
+menu-0-3-exec = menu-open-4
+menu-4-0 = cancel
+menu-4-0-exec = menu-open-0
+menu-4-1 = hibernate
+menu-4-1-exec = $HOME/.config/i3/exec/lockScreen.sh && systemctl hibernate
+menu-0-4 = 
+menu-0-4-exec = menu-open-5
+menu-5-0 = cancel
+menu-5-0-exec = menu-open-0
+menu-5-1 = lock
+menu-5-1-exec = $HOME/.config/i3/exec/lockScreen.sh
+menu-0-5 = 
+menu-0-5-exec = menu-open-6
+menu-6-0 = cancel
+menu-6-0-exec = menu-open-0
+menu-6-1 = log out
+menu-6-1-exec = i3 exit
+
+[module/KDEConnect]
+type = custom/menu
+expand-right = true
+format-spacing = 1
+label-open = "|  "
+label-open-foreground = ${colors.foreground}
+label-close = "| %{F#ff4444} %{F-}"
+label-separator = -
+label-separator-foreground = ${colors.foreground-alt}
+menu-0-0 = 
+menu-0-0-exec = kdeconnect-sms
+menu-0-1 = 漣
+menu-0-1-exec = kdeconnect-settings
+menu-0-2 = 
+menu-0-2-exec = kdeconnect-app
+
+[module/memory]
+type = internal/memory
+interval = 1
+format = %{A1:kitty -e htop:}%{F#ff4444}%{F-} <label>%{A1}
+format-foreground = ${colors.foreground}
+label = %percentage_used%%
+
+[module/cpu]
+type = internal/cpu
+interval = 1
+format = %{A1:kitty -e htop:}%{F#ff4444}%{F-} <label>%{A1}
+format-prefix-foreground = ${colors.foreground}
+label = %percentage%%
+
+[module/temperature]
+type = internal/temperature
+interval = 1
+#thermal-zone = 1
+#hwmon-path = /sys/devices/platform/dell_smm_hwmon/hwmon/hwmon4/temp2_input
+hwmon-path = /sys/devices/platform/dell_smm_hwmon/hwmon/hwmon3/temp2_input
+format = <ramp> <label>
+label = %temperature%
+base-temperature = 0
+warn-temperature = 80
+ramp-0 =  
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+ramp-4 = 
+ramp-foreground = #ff4444
+
+[module/fan]
+type = custom/script
+exec = echo "$(sensors | grep Fan | awk '$/RPM/ {print $3}')"
+format = %{F#ff4444}%{F-} <label>~RPM
+label = %output%
+interval = 1
