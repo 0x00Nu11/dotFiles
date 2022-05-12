@@ -1,18 +1,15 @@
-594
-635
-[ 04/02/2022 02:24:08.160 parse_kawase_blur_strength INFO ] blur-strength: 5 [.iter = 3, .offset = 2.750000, .expand = 50]
-[ 04/02/2022 02:24:08.262 glx_has_extension INFO ] Found GLX extension GLX_SGI_video_sync.
-[ 04/02/2022 02:24:08.262 glx_has_extension INFO ] Found GLX extension GLX_SGI_swap_control.
-[ 04/02/2022 02:24:08.262 glx_has_extension INFO ] Found GLX extension GLX_OML_sync_control.
-[ 04/02/2022 02:24:08.262 glx_has_extension INFO ] Found GLX extension GLX_MESA_swap_control.
-[ 04/02/2022 02:24:08.262 glx_has_extension INFO ] Found GLX extension GLX_EXT_swap_control.
-[ 04/02/2022 02:24:08.262 glx_has_extension INFO ] Found GLX extension GLX_EXT_texture_from_pixmap.
-[ 04/02/2022 02:24:08.262 glx_has_extension INFO ] Found GLX extension GLX_ARB_create_context.
-[ 04/02/2022 02:24:08.262 glx_has_extension INFO ] Found GLX extension GLX_EXT_buffer_age.
-[ 04/02/2022 02:24:08.289 gl_has_extension INFO ] Missing GL extension GL_GREMEDY_string_marker.
-[ 04/02/2022 02:24:08.289 generate_dual_kawase_params INFO ] blur-strength: 5 [.iter = 2, .offset = 4.250000]
-[ 04/02/2022 02:24:08.290 glGetUniformLocationChecked INFO ] Failed to get location of uniform 'opacity'. This is normal when using custom shaders.
-WARNING: No icon found in path: 'media-removable-symbolic'
-WARNING: No icon found in path: 'media-removable-symbolic'
-WARNING: No icon found in path: 'media-removable-symbolic'
-WARNING: No icon found in path: 'media-removable-symbolic'
+1030
+1052
+[ 05/12/2022 10:55:19.938 parse_kawase_blur_strength INFO ] blur-strength: 5 [.iter = 3, .offset = 2.750000, .expand = 50]
+[ 05/12/2022 10:55:19.992 glx_has_extension INFO ] Found GLX extension GLX_SGI_video_sync.
+[ 05/12/2022 10:55:19.992 glx_has_extension INFO ] Found GLX extension GLX_SGI_swap_control.
+[ 05/12/2022 10:55:19.992 glx_has_extension INFO ] Found GLX extension GLX_OML_sync_control.
+[ 05/12/2022 10:55:19.992 glx_has_extension INFO ] Found GLX extension GLX_MESA_swap_control.
+[ 05/12/2022 10:55:19.992 glx_has_extension INFO ] Found GLX extension GLX_EXT_swap_control.
+[ 05/12/2022 10:55:19.992 glx_has_extension INFO ] Found GLX extension GLX_EXT_texture_from_pixmap.
+[ 05/12/2022 10:55:19.992 glx_has_extension INFO ] Found GLX extension GLX_ARB_create_context.
+[ 05/12/2022 10:55:19.992 glx_has_extension INFO ] Found GLX extension GLX_EXT_buffer_age.
+[ 05/12/2022 10:55:20.014 gl_has_extension INFO ] Missing GL extension GL_GREMEDY_string_marker.
+[ 05/12/2022 10:55:20.014 generate_dual_kawase_params INFO ] blur-strength: 5 [.iter = 2, .offset = 4.250000]
+[ 05/12/2022 10:55:20.016 glGetUniformLocationChecked INFO ] Failed to get location of uniform 'opacity'. This is normal when using custom shaders.
+CRITICAL: [dbus_cb_name_lost:1031] Cannot acquire 'org.freedesktop.Notifications': Name is acquired by 'dunst' with PID '1107'.

@@ -2,22 +2,23 @@
 
 ### colors ###
 [colors]
-background = #000000
-background-alt = #ff4444
-foreground = #dfdfdf
-foreground-alt = #ff4444
-primary = #ffffff
-secondary = #ff4444
+background = #222
+background-alt = #777
+foreground = #fff
+foreground-alt = #ccc
+primary = #0099ff
+secondary = #00ccff
 alert = #ff4444
+separate = #555
 
 #############################################################################
 
 ### bars ###
 ## top bar ##
-[bar/top]
-width = 100%
+[bar/compact]
+width = 99%
 height = 18
-offset-x = 0
+offset-x = 0.5%
 offset-y = 0
 radius = 5
 fixed-center = true
@@ -25,35 +26,94 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 line-size = 2
 line-color = #ffffff
-border-size = 2
-border-color = #00000000
+border-size = 1
+border-color = #0099ff
 padding-left = 5px
 padding-right = 5px
 module-margin-left = 1
 module-margin-right = 1
 font-0 = Fira Code Nerd Font:size=10;1
 font-1 = NotoColorEmoji:size=10;1
-modules-left = powerMenu battery wlan eth pulseaudio KDEConnect
-modules-center = temperature cpu memory fan
-modules-right = xwindow i3 date dunst
+modules-left = powerMenu xwindow sep aggregateMenu sep sysmonMenu KDEConnect
+modules-center = i3
+modules-right = clipboard date dunst
 wm-restack = i3
 override-redirect = true
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
 cursor-click = pointer
-cursor-scroll = ns-resize4;10u4;10u
+
+[bar/aggregate]
+width = 99%
+height = 18
+offset-x = 0.5%
+offset-y = 0
+radius = 5
+fixed-center = true
+background = ${colors.background}
+foreground = ${colors.foreground}
+line-size = 2
+line-color = #ffffff
+border-size = 1
+border-color = #0099ff
+padding-left = 5px
+padding-right = 5px
+module-margin-left = 1
+module-margin-right = 1
+font-0 = Fira Code Nerd Font:size=10;1
+font-1 = NotoColorEmoji:size=10;1
+modules-left = powerMenu xwindow sep closeMenu battery wlan eth pulseaudio sep sysmonMenu KDEConnect
+modules-center = i3
+modules-right = clipboard date dunst
+wm-restack = i3
+override-redirect = true
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+cursor-click = pointer
+;separator = |
+;separator-foreground = separate
+
+[bar/sysmon]
+width = 99%
+height = 18
+offset-x = 0.5%
+offset-y = 0
+radius = 5
+fixed-center = true
+background = ${colors.background}
+foreground = ${colors.foreground}
+line-size = 2
+line-color = #ffffff
+border-size = 1
+border-color = #0099ff
+padding-left = 5px
+padding-right = 5px
+module-margin-left = 1
+module-margin-right = 1
+font-0 = Fira Code Nerd Font:size=10;1
+font-1 = NotoColorEmoji:size=10;1
+modules-left = powerMenu xwindow sep aggregateMenu sep closeMenu temperature cpu memory fan sep KDEConnect
+modules-center = i3
+modules-right = clipboard date dunst
+wm-restack = i3
+override-redirect = true
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+cursor-click = pointer
+;separator = |
+;separator-foreground = separate
 
 #############################################################################
 
 ### modules ###
 [module/xwindow]
 type = internal/xwindow
-label = %{F#ff4444}=- ﮊ%{F-} %title:0:20:...% %{F#ff4444} -=%{F-}
-label-empty = %{F#ff4444}=- ﮊ%{F-} nu11@pudding %{F#ff4444} -=%{F-}
+label = %{F#0099ff}=- ﮊ%{F-} %title:0:20:...% %{F#0099ff} -=%{F-}
+label-empty = %{F#00ccff}=- ﮊ%{F-} nu11@pudding %{F#00ccff} -=%{F-}
 
 [module/i3]
 type = internal/i3
-format = | <label-state> <label-mode> |
+format =  <label-state> <label-mode> 
 index-sort = true
 wrapping-scroll = true
 ;pin-workspaces = true
@@ -72,16 +132,16 @@ label-visible-padding = ${self.label-focused-padding}
 label-urgent = %index%
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
-label-separator =
+;label-separator =
 
 [module/wlan]
 type = internal/network
-interface = wlan0
+interface = wlp3s0
 interval = 1.0
 format-connected = <label-connected>
-label-connected = %{A1:kitty -e nmtui:}| 直 %{F#ff4444}%essid%%{F-}%{A1}
+label-connected = %{A1:kitty -e nmtui:} 直 %{F#0099ff}%essid%%{F-}%{A1}
 format-disconnected = <label-disconnected>
-label-disconnected = %{A1:kitty -e nmtui:}| %{F#ff4444}睊%{F-}%{A}
+label-disconnected = %{A1:kitty -e nmtui:} %{F#ff4444}睊%{F-}%{A}
 label-disconnected-foreground = ${colors.foreground}
 
 [module/eth]
@@ -89,7 +149,7 @@ type = internal/network
 interface = eno1
 interval = 1.0
 format-connected = <label-connected>
-label-connected = %{A1:kitty -e nmtui:}|  %{F#ff4444}%ifname%%{F-}%{A}
+label-connected = %{A1:kitty -e nmtui:}  %{F#0099ff}%ifname%%{F-}%{A}
 ;format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = disc
@@ -98,10 +158,10 @@ label-connected = %{A1:kitty -e nmtui:}|  %{F#ff4444}%ifname%%{F-}%{A}
 [module/date]
 type = internal/date
 interval = 1
-date = %A%{F#ff4444},%{F-} %B %{F#ff4444}-%{F-}
-date-alt = %d%{F#ff4444}/%{F-}%m%{F#ff4444}/%{F-}%Y %{F#ff4444}-%{F-}
-time = %H%{F#ff4444}:%{F-}%M%{F#ff4444}:%{F-}%S
-time-alt = %I%{F#ff4444}:%{F-}%M%{F#ff4444}:%{F-}%S %{F#ff4444}%p%{F-}
+date = %A%{F#0099ff},%{F-} %B %{F#0099ff}-%{F-}
+date-alt = %d%{F#00ccff}/%{F-}%m%{F#00ccff}/%{F-}%Y %{F#00ccff}-%{F-}
+time = %H%{F#0099ff}:%{F-}%M%{F#0099ff}:%{F-}%S
+time-alt = %I%{F#00ccff}:%{F-}%M%{F#00ccff}:%{F-}%S %{F#00ccff}%p%{F-}
 ;format-prefix =
 ;format-prefix-foreground = ${colors.foreground-alt}
 label = %date% %time%
@@ -114,32 +174,32 @@ full-at = 98
 format-charging = <animation-charging> <label-charging>
 label-charging = %{A1:notify-send -u critical "$(upower -i /org/freedesktop/UPower/devices/battery_BAT0)":}%percentage%%%{A1}
 format-discharging = <label-discharging>
-label-discharging = %{A1:notify-send -u critical "$(upower -i /org/freedesktop/UPower/devices/battery_BAT0)":}| %{F#ff4444}%{F-} %percentage%%%{A1}
+label-discharging = %{A1:notify-send -u critical "$(upower -i /org/freedesktop/UPower/devices/battery_BAT0)":} %{F#0099ff}%{F-} %percentage%%%{A1}
 format-discharging-underline = ${self.format-charging-underline}
-label-full = %{A1:notify-send -u critical "$(upower -i /org/freedesktop/UPower/devices/battery_BAT0)":}| %{F#ff4444}%{F-} %percentage%%%{A1}
+label-full = %{A1:notify-send -u critical "$(upower -i /org/freedesktop/UPower/devices/battery_BAT0)":} %{F#00ccff}%{F-} %percentage%%%{A1}
 format-full-prefix-foreground = ${colors.foreground}
 format-full-underline = ${self.format-charging-underline}
-animation-charging-0 = | %{F#ff4444}%{F-}
-animation-charging-1 = | %{F#ff4444}%{F-}
-animation-charging-2 = | %{F#ff4444}%{F-}
-animation-charging-3 = | %{F#ff4444}%{F-}
-animation-charging-4 = | %{F#ff4444}%{F-}
+animation-charging-0 =  %{F#00ccff}%{F-}
+animation-charging-1 =  %{F#00ccff}%{F-}
+animation-charging-2 =  %{F#00ccff}%{F-}
+animation-charging-3 =  %{F#00ccff}%{F-}
+animation-charging-4 =  %{F#00ccff}%{F-}
 animation-charging-framerate = 750
 
 [module/pulseaudio]
 type = internal/pulseaudio
 format-volume = <label-volume> <bar-volume> <ramp-volume>
-label-volume = %{A1:kitty -e ncpamixer:}| %percentage%%%{A1}
+label-volume = %{A1:kitty -e ncpamixer:} %percentage%%%{A1}
 label-volume-foreground = ${root.foreground}
-format-muted = | %{F#ff4444}muted%{F-} <bar-volume> <label-muted>
+format-muted =  %{F#00ccff}muted%{F-} <bar-volume> <label-muted>
 label-muted = ﱝ
 label-muted-foreground = ${colors.foreground-alt}
 bar-volume-width = 10
-bar-volume-foreground = #ff4444
+bar-volume-foreground = #0099ff
 bar-volume-gradient = true
-bar-volume-indicator = %{F#ff4444}-C%{F-}
+bar-volume-indicator = %{F#00ccff}-C%{F-}
 bar-volume-indicator-font = 2
-bar-volume-fill = %{F#ff4444}~%{F-}
+bar-volume-fill = %{F#0099ff}~%{F-}
 bar-volume-fill-font = 2
 bar-volume-empty = o
 bar-volume-empty-font = 2
@@ -169,9 +229,16 @@ ramp-volume-19 = 
 type = custom/script
 exec = /$HOME/.config/polybar/modules/dunst/snooze.sh
 interval = 1
-format-foreground = ${colors.foreground-alt}
+format-foreground = ${colors.primary}
 click-left = /$HOME/.config/polybar/modules/dunst/dunstHistory.sh
 click-right = /$HOME/.config/polybar/modules/dunst/snooze.sh --toggle &
+
+[module/clipboard]
+type = custom/script
+exec = /$HOME/.config/polybar/modules/clipboard/clipboard.sh
+format-foreground = ${colors.primary}
+click-left = /$HOME/.config/polybar/modules/clipboard/clipboard.sh --left
+click-right = /$HOME/.config/polybar/modules/clipboard/clipboard.sh --right
 
 [module/powerMenu]
 type = custom/menu
@@ -201,32 +268,26 @@ menu-3-0 = cancel
 menu-3-0-exec = menu-open-0
 menu-3-1 = suspend
 menu-3-1-exec = $HOME/.config/i3/exec/lockScreen.sh && systemctl suspend
-menu-0-3 = 
+menu-0-3 = 
 menu-0-3-exec = menu-open-4
 menu-4-0 = cancel
 menu-4-0-exec = menu-open-0
-menu-4-1 = hibernate
-menu-4-1-exec = $HOME/.config/i3/exec/lockScreen.sh && systemctl hibernate
-menu-0-4 = 
+menu-4-1 = lock
+menu-4-1-exec = $HOME/.config/i3/exec/lockScreen.sh
+menu-0-4 = 
 menu-0-4-exec = menu-open-5
 menu-5-0 = cancel
 menu-5-0-exec = menu-open-0
-menu-5-1 = lock
-menu-5-1-exec = $HOME/.config/i3/exec/lockScreen.sh
-menu-0-5 = 
-menu-0-5-exec = menu-open-6
-menu-6-0 = cancel
-menu-6-0-exec = menu-open-0
-menu-6-1 = log out
-menu-6-1-exec = i3 exit
+menu-5-1 = log out
+menu-5-1-exec = i3 exit
 
 [module/KDEConnect]
 type = custom/menu
 expand-right = true
 format-spacing = 1
-label-open = "|  "
+label-open = "  "
 label-open-foreground = ${colors.foreground}
-label-close = "| %{F#ff4444} %{F-}"
+label-close = " %{F#00ccff} %{F-}"
 label-separator = -
 label-separator-foreground = ${colors.foreground-alt}
 menu-0-0 = 
@@ -239,14 +300,14 @@ menu-0-2-exec = kdeconnect-app
 [module/memory]
 type = internal/memory
 interval = 1
-format = %{A1:kitty -e htop:}%{F#ff4444}%{F-} <label>%{A1}
+format = %{A1:kitty -e htop:}%{F#00ccff}%{F-} <label>%{A1}
 format-foreground = ${colors.foreground}
 label = %percentage_used%%
 
 [module/cpu]
 type = internal/cpu
 interval = 1
-format = %{A1:kitty -e htop:}%{F#ff4444}%{F-} <label>%{A1}
+format = %{A1:kitty -e htop:}%{F#00ccff}%{F-} <label>%{A1}
 format-prefix-foreground = ${colors.foreground}
 label = %percentage%%
 
@@ -265,11 +326,35 @@ ramp-1 = 
 ramp-2 = 
 ramp-3 = 
 ramp-4 = 
-ramp-foreground = #ff4444
+ramp-foreground = #00ccff
 
 [module/fan]
 type = custom/script
 exec = echo "$(sensors | grep Fan | awk '$/RPM/ {print $3}')"
-format = %{F#ff4444}%{F-} <label>~RPM
+format = %{F#00ccff}%{F-} <label>~RPM
 label = %output%
 interval = 1
+
+[module/sep]
+type = custom/text
+content = |
+content-foreground = separate
+
+[module/aggregateMenu]
+type = custom/script
+exec = $HOME/.config/polybar/modules/menus/aggregate.sh
+format-foreground = ${colors.primary}
+click-left = $HOME/.config/polybar/modules/menus/aggregate.sh --left
+click-right = $HOME/.config/polybar/modules/menus/aggregate.sh --right
+[module/sysmonMenu]
+type = custom/script
+exec = $HOME/.config/polybar/modules/menus/sysmon.sh
+format-foreground = ${colors.foreground}
+click-left = $HOME/.config/polybar/modules/menus/sysmon.sh --left
+click-right = $HOME/.config/polybar/modules/menus/sysmon.sh --right
+[module/closeMenu]
+type = custom/script
+exec = $HOME/.config/polybar/modules/menus/switchbar.sh
+format-foreground = ${colors.primary}
+click-left = $HOME/.config/polybar/modules/menus/switchbar.sh --left
+click-right = $HOME/.config/polybar/modules/menus/switchbar.sh --right

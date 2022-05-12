@@ -46,13 +46,15 @@ bindsym Print               exec --no-startup-id flameshot screen -r -p $HOME/Pi
 bindsym $mod+Print          exec --no-startup-id flameshot full -r -p $HOME/Pictures/Screenshots
 bindsym Shift+$mod+Print    exec --no-startup-id flameshot gui
 bindsym $mod+b		    exec brave
+bindsym $alt+Shift	    exec $HOME/.config/i3/exec/kbLayout.sh cycle us ar
 
 ######################################################################################################################
 
 ### workspaces ###
 # assign workspaces #
-assign [class="Signal"]     $ws1
-assign [class="discord"]    $ws1
+assign [class="Signal"]     	$ws1
+assign [class="discord"]    	$ws1
+assign [class="Brave-browser"]	$ws2
 # switch to workspace #
 bindsym $mod+Tab    workspace next
 bindsym $mod+1      workspace $ws1
@@ -106,15 +108,17 @@ for_window [class="^.*"] floating_border pixel 2
 
 ### gaps ###
 gaps top 20
+gaps left 5
+gaps right 5
 gaps inner 5
 
 ######################################################################################################################
 
 ### colors ###
 # class                 border    backgr.   text      indicator   child_border
-client.focused          #ff4444 #ff4444 #ff4444 #ff4444   #ff4444
-client.focused_inactive #000000 #000000 #000000 #000000   #000000
-client.unfocused        #000000 #000000 #000000 #000000   #000000
-client.urgent           #ff4444 #ff4444 #ff4444 #ff4444   #ff4444
-client.placeholder      #000000 #000000 #000000 #000000   #000000
-client.background       #ff4444
+client.focused          #0099ff   #0099ff   #0099ff   #0099ff     #0099ff
+client.focused_inactive #777777   #777777   #777777   #777777     #777777
+client.unfocused        #00ccff   #00ccff   #00ccff   #00ccff     #00ccff
+client.urgent           #ff4444   #ff4444   #ff4444   #ff4444     #ff4444
+client.placeholder      #cccccc   #cccccc   #cccccc   #cccccc     #cccccc
+client.background       #0099ff
