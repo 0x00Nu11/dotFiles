@@ -108,8 +108,8 @@ cursor-click = pointer
 ### modules ###
 [module/xwindow]
 type = internal/xwindow
-label = %{F#0099ff}=- ﮊ%{F-} %title:0:20:...% %{F#0099ff} -=%{F-}
-label-empty = %{F#00ccff}=- ﮊ%{F-} nu11@pudding %{F#00ccff} -=%{F-}
+label = %{F#0099ff}=- ﮊ%{F-} %title:0:20:...% %{F#0099ff}ﮊ -=%{F-}
+label-empty = %{F#00ccff}=- ﮊ%{F-} nu11@pudding %{F#00ccff}ﮊ -=%{F-}
 
 [module/i3]
 type = internal/i3

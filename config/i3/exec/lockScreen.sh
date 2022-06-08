@@ -35,5 +35,5 @@ i3lock -e                          \
 --clock                            \
 --indicator                        \
 --time-str="%H:%M:%S"              \
---date-str="%A, %d %m %Y"          \
+--date-str="%A, %d/%m/%Y"          \
 -i /tmp/lockScreen.png

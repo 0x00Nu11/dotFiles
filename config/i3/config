@@ -52,9 +52,10 @@ bindsym $alt+Shift	    exec $HOME/.config/i3/exec/kbLayout.sh cycle us ar
 
 ### workspaces ###
 # assign workspaces #
-assign [class="Signal"]     	$ws1
-assign [class="discord"]    	$ws1
-assign [class="Brave-browser"]	$ws2
+assign [class="Signal"]     			$ws1
+assign [class="discord"]    			$ws1
+assign [class="Brave-browser"]			$ws2
+for_window [class="Spotify"] move to workspace 	$ws10
 # switch to workspace #
 bindsym $mod+Tab    workspace next
 bindsym $mod+1      workspace $ws1

@@ -1,0 +1,15 @@
+2693
+2717
+[ 06/08/2022 22:49:37.430 parse_kawase_blur_strength INFO ] blur-strength: 5 [.iter = 3, .offset = 2.750000, .expand = 50]
+[ 06/08/2022 22:49:37.524 glx_has_extension INFO ] Found GLX extension GLX_SGI_video_sync.
+[ 06/08/2022 22:49:37.524 glx_has_extension INFO ] Found GLX extension GLX_SGI_swap_control.
+[ 06/08/2022 22:49:37.524 glx_has_extension INFO ] Found GLX extension GLX_OML_sync_control.
+[ 06/08/2022 22:49:37.524 glx_has_extension INFO ] Found GLX extension GLX_MESA_swap_control.
+[ 06/08/2022 22:49:37.524 glx_has_extension INFO ] Found GLX extension GLX_EXT_swap_control.
+[ 06/08/2022 22:49:37.524 glx_has_extension INFO ] Found GLX extension GLX_EXT_texture_from_pixmap.
+[ 06/08/2022 22:49:37.524 glx_has_extension INFO ] Found GLX extension GLX_ARB_create_context.
+[ 06/08/2022 22:49:37.524 glx_has_extension INFO ] Found GLX extension GLX_EXT_buffer_age.
+[ 06/08/2022 22:49:37.556 gl_has_extension INFO ] Missing GL extension GL_GREMEDY_string_marker.
+[ 06/08/2022 22:49:37.556 generate_dual_kawase_params INFO ] blur-strength: 5 [.iter = 2, .offset = 4.250000]
+[ 06/08/2022 22:49:37.557 glGetUniformLocationChecked INFO ] Failed to get location of uniform 'opacity'. This is normal when using custom shaders.
+CRITICAL: [dbus_cb_name_lost:1031] Cannot acquire 'org.freedesktop.Notifications': Name is acquired by 'dunst' with PID '3889'.
