@@ -1,5 +1,5 @@
 # dotFiles
 personal dotfiles
-![2022-05-12_12-19](https://user-images.githubusercontent.com/101659928/168037630-8bab0a9a-8bd2-4c8d-8682-52665a8e0eb0.png)
-![2022-05-12_12-20](https://user-images.githubusercontent.com/101659928/168037640-830e179c-0661-44bc-804d-a55b098009f3.png)
-![2022-05-12_12-20_1](https://user-images.githubusercontent.com/101659928/168037641-3dca9eff-6a36-4175-bc36-16c7d2995670.png)
+![2022-06-08_22-58](https://user-images.githubusercontent.com/101659928/172706464-7b4cf207-2440-46ed-9f4a-944d6cf94d63.png)
+![2022-06-08_22-59](https://user-images.githubusercontent.com/101659928/172706549-68b475bb-12b3-466c-9f4b-4ddef0506063.png)
+![2022-06-08_23-00](https://user-images.githubusercontent.com/101659928/172706555-d45c2c02-febf-4742-b4cd-a817db508390.png)
